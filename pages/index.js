@@ -1,13 +1,19 @@
 import {YMaps, Map, Clusterer, Placemark, ObjectManager,} from '@pbe/react-yandex-maps';
 import React, {useState, useEffect} from 'react';
 
-const { getClient } = require('./db');
-
 const getQuery = `SELECT * FROM coords`;
 const postQuery = `INSERT INTO users (id, x, y) VALUES ($1, $2, $3)`;
 
 export const getStaticProps = async () => {
-    const client = await getClient();
+    const { Client } = require('pg');
+    const client = new Client({
+        user: 'postgres',
+        host: 'localhost',
+        database: 'postgres',
+        password: '1234',
+        port: 5432,
+    });
+    await client.connect();
     const coords = await client.query(getQuery);
     client.end();
     console.log(coords.rows);
