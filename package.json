@@ -6,11 +6,26 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "json-server": "json-server --watch db.json --port 5000",
+    "serve": "concurrently \"npm run dev\" \"npm run json-server\""
   },
   "dependencies": {
+    "@pbe/react-yandex-maps": "^1.2.5",
+    "@react-google-maps/api": "^2.19.2",
+    "concurrently": "^8.2.2",
+    "fs": "^0.0.1-security",
+    "json-server": "^1.0.0-alpha.23",
+    "mysql2": "^3.9.2",
+    "next": "14.1.0",
+    "pg": "^8.11.3",
     "react": "^18",
-    "react-dom": "^18",
-    "next": "14.1.0"
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.22.0"
+  },
+  "browser": {
+    "fs": false,
+    "os": false,
+    "path": false
   }
 }
