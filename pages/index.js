@@ -4,34 +4,34 @@ import React, {useState, useEffect} from 'react';
 const getQuery = `SELECT * FROM coords`;
 const postQuery = `INSERT INTO users (id, x, y) VALUES ($1, $2, $3)`;
 
-export const getStaticProps = async () => {
-    const { Client } = require('pg');
-    const client = new Client({
-        user: 'postgres',
-        host: '94.181.182.187',
-        database: 'postgres',
-        password: '1234',
-        port: 5432,
-    });
-    await client.connect();
-    const coords = await client.query(getQuery);
-    client.end();
-    console.log(coords.rows);
-    return {
-        props: {stores: coords.rows}
-    }
-}
-const MapZoo = ({stores}) => {
-    let newStore = [];
-    for (let store of stores) {
-        newStore.push({
-            id: store.id,
-            coordinates: [store.x, store.y],
-        })
-    }
+// export const getStaticProps = async () => {
+//     const { Client } = require('pg');
+//     const client = new Client({
+//         user: 'postgres',
+//         host: 'localhost',
+//         database: 'postgres',
+//         password: '1234',
+//         port: 5432,
+//     });
+//     await client.connect();
+//     const coords = await client.query(getQuery);
+//     client.end();
+//     console.log(coords.rows);
+//     return {
+//         props: {stores: coords.rows}
+//     }
+// }
+const MapZoo = () => {
+    // let newStore = [];
+    // for (let store of stores) {
+    //     newStore.push({
+    //         id: store.id,
+    //         coordinates: [store.x, store.y],
+    //     })
+    // }
     const [placemarks, setPlacemarks] = useState(newStore);
 
-    const addPlacemark = async function (e){
+    const addPlacemark = async function (e) {
         const newPlacemark = {
             id: placemarks.length + 1,
             coordinates: [e.get('coords')[0], e.get('coords')[1]],
