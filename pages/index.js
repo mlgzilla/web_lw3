@@ -22,7 +22,7 @@ const postQuery = `INSERT INTO users (id, x, y) VALUES ($1, $2, $3)`;
 //     }
 // }
 const MapZoo = () => {
-    // let newStore = [];
+    let newStore = [];
     // for (let store of stores) {
     //     newStore.push({
     //         id: store.id,
